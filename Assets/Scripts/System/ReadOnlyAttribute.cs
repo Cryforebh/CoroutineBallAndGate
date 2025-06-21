@@ -40,10 +40,10 @@ public class ReadOnlyDrawer : PropertyDrawer
     // Для новой отрисовки через UIElements
     public override VisualElement CreatePropertyGUI(SerializedProperty property)
     {
-        // 1. Создаём базовый элемент (как обычное поле в инспекторе)
+        // 1. Создаем базовый элемент (как обычное поле в инспекторе)
         var element = base.CreatePropertyGUI(property)
 
-        // 2. Если базовый элемент не создался (null), создаём новый PropertyField
+        // 2. Если базовый элемент не создался (null), создаем новый PropertyField
         ?? new UnityEditor.UIElements.PropertyField(property);
 
         // 3. Делаем элемент неактивным

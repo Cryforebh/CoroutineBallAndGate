@@ -8,7 +8,7 @@ namespace Assets.Scripts
     public class Gates : MonoBehaviour
     {
         [SerializeField, ReadOnly] 
-        private int _score; // Текущий счёт
+        private int _score; // Текущий счет
 
         private void Start()
         {
@@ -32,8 +32,8 @@ namespace Assets.Scripts
             if (ball != null)
             {
                 Destroy(ball.gameObject); // Уничтожаем мяч
-                _score = _score + 10; // Увеличиваем счёт | Если правильно понял "_score++" дороже чем "_score = _score + 10", поэтому написал так
-                Debug.Log($"Счёт: {_score}"); // Выводим в консоль
+                _score = _score + 10; // Увеличиваем счет | Если правильно понял "_score++" дороже чем "_score = _score + 10", поэтому написал так
+                Debug.Log($"Счет: {_score}"); // Выводим в консоль
             }
         }
     }

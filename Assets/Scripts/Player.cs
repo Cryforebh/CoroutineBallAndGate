@@ -5,89 +5,86 @@ namespace Netologia.Homework
 {
     public class Player : MonoBehaviour
     {
-        // Булева переменная, указывающая на готовность игрока к запуску мяча
-        private bool _ready;
-
-        // Ссылка на текущий мяч (Rigidbody)
-        private Rigidbody _ball;
-
-
-        [SerializeField]
-        // Префаб мяча, используемый для создания новых экземпляров
+        [Header("Настройки мяча")]
+        [SerializeField, Tooltip("Сюда нужно поместить Префаб Мяча")] 
         private Rigidbody _ballPrefab;
+        [SerializeField, Tooltip("Начальная скорость Мяча")] 
+        private float _startVelocity = 10f;
+        [SerializeField, Tooltip("Время жизни Мяча")] 
+        private float _lifetime = 3f;
+        [SerializeField, Tooltip("Время респавна Мяча")] 
+        private float _respawnDelay = 2f;
+        [SerializeField, Tooltip("Начальная кордината спавна Мяча относительно игрока")] 
+        private Vector3 _ballLocalOffset = new Vector3(0, 0, 2f);
 
-        [SerializeField]
-        // Начальная скорость мяча
-        private float _startVelocity;
+        private bool _ready;
+        private Rigidbody _ball;
+        private Vector3 _originalBallScale;
 
-        [SerializeField]
-        // Время жизни мяча
-        private float _lifetime;
-
-        [SerializeField]
-        // Задержка перед респавном нового мяча
-        private float _respawnDelay;
-
-
-        // Вызывается каждый кадр. Проверяет, готова ли игра к запуску мяча, и обрабатывает нажатие клавиши пробела для запуска мяча
         private void Update()
         {
-            // Если не готовы, то метод завершается
             if (!_ready) return;
 
-            // Если нажата клавиша пробела
-            if (Input.GetKey(KeyCode.Space))
+            // Обновляем позицию мяча относительно игрока
+            UpdateBallPosition();
+
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                // Запускаем корутину Reloader()
-                StartCoroutine(Reloader());
-
-                // Освобождаем мяч от кинематики
-                _ball.isKinematic = false;
-
-                // Отвязываем мяч от родительского объекта
-                _ball.transform.parent = null;
-
-                // Устанавливаем скорость мяча
-                _ball.velocity = transform.forward * _startVelocity;
-
-                // Уничтожаем мяч через _lifetime секунд
-                Destroy(_ball.gameObject, _lifetime);
+                StartCoroutine(ReloadCoroutine());
+                LaunchBall();
             }
         }
 
-        // Корутина, которая устанавливает _ready в false, ждёт _respawnDelay секунд и затем вызывает метод Spawn() для создания нового мяча
-        private IEnumerator Reloader()
+        private void UpdateBallPosition()
         {
-            // Устанавливаем _ready в false
-            _ready = false;
+            if (_ball == null) return;
 
-            // Ждём _respawnDelay секунд
-            yield return new WaitForSeconds(_respawnDelay);
+            // Расчитываем мировую позицию с учетом поворота игрока
+            Vector3 worldOffset = transform.TransformDirection(_ballLocalOffset);
+            _ball.transform.position = transform.position + worldOffset;
 
-            // Создаём новый мяч
-            Spawn();
+            // Сохраняем оригинальный поворот мяча
+            _ball.transform.rotation = Quaternion.identity;
         }
 
-        // Создаёт новый мяч с помощью Instantiate, устанавливает его свойства и устанавливает _ready в true
-        private void Spawn()
+        private void LaunchBall()
         {
-            // Создаём новый мяч с помощью _ballPrefab
-            /* _ball = Instantiate(_ballPrefab, transform);
-             */
-            _ball = Instantiate(_ballPrefab, transform.position + (transform.forward * 2), transform.rotation);
+            _ball.isKinematic = false;
+            _ball.transform.parent = null;
+            _ball.velocity = transform.forward * _startVelocity;
+            Destroy(_ball.gameObject, _lifetime);
+        }
 
-            // Устанавливаем мяч как кинематический
+        private IEnumerator ReloadCoroutine()
+        {
+            _ready = false;
+            yield return new WaitForSeconds(_respawnDelay);
+            SpawnNewBall();
+        }
+
+        private void SpawnNewBall()
+        {
+            // Создаем мяч независимо от родителя
+            GameObject ballInstance = Instantiate(
+                _ballPrefab.gameObject,
+                transform.position + transform.TransformDirection(_ballLocalOffset),
+                Quaternion.identity
+            );
+
+            _ball = ballInstance.GetComponent<Rigidbody>();
             _ball.isKinematic = true;
 
-            // Устанавливаем _ready в true
+            // Фиксируем оригинальный масштаб
+            ballInstance.transform.localScale = _originalBallScale;
+
             _ready = true;
         }
 
-        // Вызывается при запуске сцены и создаёт начальный мяч
         private void Start()
         {
-            // Создаём начальный мяч
-            Spawn();
+            // Сохраняем оригинальный размер из префаба
+            _originalBallScale = _ballPrefab.transform.localScale;
+            SpawnNewBall();
         }
     }
 }
