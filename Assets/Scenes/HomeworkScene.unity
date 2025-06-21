@@ -345,6 +345,7 @@ GameObject:
   - component: {fileID: 949197883}
   - component: {fileID: 949197882}
   - component: {fileID: 949197881}
+  - component: {fileID: 949197884}
   m_Layer: 0
   m_Name: Gates
   m_TagString: Untagged
@@ -382,7 +383,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -438,6 +439,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949197879}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &949197884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949197879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a9d486371c0fcb4bb2e3b4e5d45f179, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _score: 0
 --- !u!1 &1098492764
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ballPrefab: {fileID: 1232992293884806385, guid: 98abd3c335e9828468c828bd9be20c10, type: 3}
-  _startVelocity: 100
+  _startVelocity: 80
   _lifetime: 2
   _respawnDelay: 2
 --- !u!54 &1729871100
@@ -867,7 +881,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729871097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.12, z: -23.98}
+  m_LocalPosition: {x: 0, y: 1.12, z: -22.41}
   m_LocalScale: {x: 4.168, y: 1, z: 1.7437}
   m_ConstrainProportionsScale: 0
   m_Children: []

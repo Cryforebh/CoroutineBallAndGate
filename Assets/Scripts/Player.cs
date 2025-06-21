@@ -74,7 +74,7 @@ namespace Netologia.Homework
             // Создаём новый мяч с помощью _ballPrefab
             /* _ball = Instantiate(_ballPrefab, transform);
              */
-            _ball = Instantiate(_ballPrefab, transform.position, transform.rotation);
+            _ball = Instantiate(_ballPrefab, transform.position + (transform.forward * 2), transform.rotation);
 
             // Устанавливаем мяч как кинематический
             _ball.isKinematic = true;
