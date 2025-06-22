@@ -16,12 +16,11 @@ public class Butterfly : MonoBehaviour
 
     private Rigidbody _man;
     private bool _movingToEnd = true;
-
     private Vector3 _worldStart;
     private Vector3 _worldNetural;
     private Vector3 _worldEnd;
 
-    private void Awake()
+    private void Start()
     {
         _man = GetComponent<Rigidbody>();
         _man.isKinematic = true;
@@ -73,8 +72,11 @@ public class Butterfly : MonoBehaviour
             return;
         }
 #endif
-        Gizmos.DrawSphere(transform.TransformPoint(_worldStart), _sphereRadius);
-        Gizmos.DrawSphere(transform.TransformPoint(_worldNetural), _sphereRadius);
-        Gizmos.DrawSphere(transform.TransformPoint(_worldEnd), _sphereRadius);
+        Gizmos.DrawSphere(_worldStart, _sphereRadius);
+        Gizmos.DrawSphere(_worldNetural, _sphereRadius);
+        Gizmos.DrawSphere(_worldEnd, _sphereRadius);
+
+        Gizmos.DrawLine(_worldStart,_worldNetural);
+        Gizmos.DrawLine(_worldNetural, _worldEnd);
     }
 }

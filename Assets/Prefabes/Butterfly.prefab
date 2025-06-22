@@ -113,7 +113,7 @@ Transform:
   m_Children:
   - {fileID: 2464259920227365725}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5601277932599934696
 GameObject:
@@ -246,7 +246,7 @@ MonoBehaviour:
   _localEnd: {x: 16, y: 0, z: -6}
   _speedMove: 2
   _delayStop: 1
-  _gizmosColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _gizmosColor: {r: 0, g: 0.6566129, b: 1, a: 1}
   _sphereRadius: 0.4
 --- !u!1 &7553077912661664242
 GameObject:
