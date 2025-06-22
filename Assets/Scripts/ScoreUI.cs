@@ -1,15 +1,13 @@
 using Assets.Scripts;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Gates))]
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField, Tooltip("Сюда привяжите TMP_Text")] 
+    [SerializeField, Tooltip("Сюда привяжите TMP_Text")]
     private TMP_Text _scoreText;
-    [SerializeField, Tooltip("Скорость обновления счета")] 
+    [SerializeField, Tooltip("Скорость обновления счета")]
     private float _updateSpeed = 0.5f;
 
     private Gates _gates;
@@ -23,7 +21,7 @@ public class ScoreUI : MonoBehaviour
             Debug.Log("Вы забыли привязать TMP_Text!");
             return;
         }
-        
+
         _gates = GetComponent<Gates>();
         _displayedScore = _gates.Score;
         UpdateText();
