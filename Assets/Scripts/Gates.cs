@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
     public class Gates : MonoBehaviour
     {
-        [SerializeField, ReadOnly] 
-        private int _score; // Текущий счет
+        [SerializeField, ReadOnly]
+        private int _score; // Текущий счет игрока
 
         private void Start()
         {

@@ -1,23 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MoverCustom : MonoBehaviour
 {
     [Header("Настройки движения")]
-    [SerializeField, Tooltip("Начало движения - кордината")] 
+    [SerializeField, Tooltip("Начало движения - кордината")]
     private Vector3 _startLocal = new Vector3(-4f, 0f, 0f);
-    [SerializeField, Tooltip("Конец движения - кордината")] 
+    [SerializeField, Tooltip("Конец движения - кордината")]
     private Vector3 _endLocal = new Vector3(4f, 0f, 0f);
-    [SerializeField, Tooltip("Скорость движения")] 
+    [SerializeField, Tooltip("Скорость движения")]
     private float _speed = 1f;
-    [SerializeField, Tooltip("Длительность остановки по прибытию к конечной кординате")] 
+    [SerializeField, Tooltip("Задержка перед изменением направления движения")]
     private float _delay = 2f;
 
     [Header("Настройки Gizmos")]
-    [SerializeField, Tooltip("Цвет линии движения")] 
+    [SerializeField, Tooltip("Цвет линии движения")]
     private Color _gizmoColor = Color.yellow;
-    [SerializeField, Tooltip("Радиус точек по бокам")] 
+    [SerializeField, Tooltip("Радиус точек по бокам")]
     private float _sphereRadius = 0.4f;
 
     private Rigidbody _rb;
@@ -48,7 +48,7 @@ public class MoverCustom : MonoBehaviour
                 _rb.MovePosition(Vector3.MoveTowards(
                     _rb.position,
                     target,
-                    _speed * Time.fixedDeltaTime
+                    _speed * Time.deltaTime
                 ));
                 yield return new WaitForFixedUpdate();
             }
@@ -62,7 +62,7 @@ public class MoverCustom : MonoBehaviour
     {
         Gizmos.color = _gizmoColor;
 
-        // В редакторе показываем текущие точки
+        // В редакторе показывает текущие точки
 #if UNITY_EDITOR
         if (!Application.isPlaying)
         {
@@ -73,7 +73,7 @@ public class MoverCustom : MonoBehaviour
         }
 #endif
 
-        // В игре показываем зафиксированные точки
+        // Во время игрового режима показывает зафиксированные точки
         Gizmos.DrawSphere(_worldStart, _sphereRadius);
         Gizmos.DrawSphere(_worldEnd, _sphereRadius);
         Gizmos.DrawLine(_worldStart, _worldEnd);

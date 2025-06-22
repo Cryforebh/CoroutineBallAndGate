@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
     [Header("Настройка скорости угла вращения")]
-    [SerializeField] 
+    [SerializeField]
     private Vector3 _rotate; // Углы вращения (настраивается в инспекторе)
 
     private Rigidbody _rb;
