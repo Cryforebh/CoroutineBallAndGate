@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 7740831788694522967}
   - component: {fileID: 118251642406561450}
   - component: {fileID: 6576937258002420022}
+  - component: {fileID: 7895954450998259495}
   m_Layer: 0
   m_Name: GatesTrigger
   m_TagString: Untagged
@@ -475,3 +476,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _score: 0
+--- !u!114 &7895954450998259495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524419658705383585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee23626a00a975408e893082832e728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

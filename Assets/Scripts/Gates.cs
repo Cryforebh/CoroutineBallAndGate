@@ -7,6 +7,8 @@ namespace Assets.Scripts
         [SerializeField, ReadOnly]
         private int _score; // Текущий счет игрока
 
+        public int Score => _score;
+
         private void Start()
         {
             // Автоматически делаем коллайдер триггером

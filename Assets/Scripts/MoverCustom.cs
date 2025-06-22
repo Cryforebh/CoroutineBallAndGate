@@ -30,7 +30,7 @@ public class MoverCustom : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _rb.isKinematic = true;
 
-        // Фиксируем стартовые позиции
+        // Фиксируются стартовые позиции
         _worldStart = transform.TransformPoint(_startLocal);
         _worldEnd = transform.TransformPoint(_endLocal);
 
@@ -45,11 +45,7 @@ public class MoverCustom : MonoBehaviour
 
             while (Vector3.Distance(_rb.position, target) > 0.01f)
             {
-                _rb.MovePosition(Vector3.MoveTowards(
-                    _rb.position,
-                    target,
-                    _speed * Time.deltaTime
-                ));
+                _rb.MovePosition(Vector3.MoveTowards(_rb.position, target, _speed * Time.deltaTime));
                 yield return new WaitForFixedUpdate();
             }
 

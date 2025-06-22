@@ -39,11 +39,11 @@ namespace Netologia.Homework
         {
             if (_ball == null) return;
 
-            // Расчитываем мировую позицию с учетом поворота игрока
+            // Расчитывается мировая позиция с учетом поворота игрока
             Vector3 worldOffset = transform.TransformDirection(_ballLocalOffset);
             _ball.transform.position = transform.position + worldOffset;
 
-            // Сохраняем оригинальный поворот мяча
+            // Сохраняется оригинальный поворот мяча
             _ball.transform.rotation = Quaternion.identity;
         }
 
