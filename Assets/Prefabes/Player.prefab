@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cfeea6c708c4d46a70d370982392bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballPrefab: {fileID: 1232992293884806385, guid: 98abd3c335e9828468c828bd9be20c10, type: 3}
+  _ballPrefab: {fileID: 2354953864494535851, guid: 98abd3c335e9828468c828bd9be20c10, type: 3}
   _startVelocity: 80
   _lifetime: 3
   _respawnDelay: 2

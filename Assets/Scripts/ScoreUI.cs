@@ -2,44 +2,47 @@ using Assets.Scripts;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(Gates))]
+[RequireComponent(typeof(TMP_Text))]
 public class ScoreUI : MonoBehaviour
 {
-    [SerializeField, Tooltip("Сюда привяжите TMP_Text")]
-    private TMP_Text _scoreText;
-    [SerializeField, Tooltip("Скорость обновления счета")]
-    private float _updateSpeed = 0.5f;
+    [SerializeField, Tooltip("Сюда привяжите Ворота")]
+    private Gates _hitTrigger;
+    [SerializeField, Tooltip("Скорость обновления счета"), Min(0.1f)]
+    private float _updateSpeed = 0.6f;
 
-    private Gates _gates;
+    private TMP_Text _scoreText;
     private int _displayedScore;
     private float _animationProgress;
 
     private void Awake()
     {
-        if (_scoreText == null)
+        _scoreText = GetComponent<TMP_Text>();
+
+        if (_hitTrigger == null)
         {
-            Debug.Log("Вы забыли привязать TMP_Text!");
+            Debug.Log("Вы забыли привязать Ворота!");
             return;
         }
 
-        _gates = GetComponent<Gates>();
-        _displayedScore = _gates.Score;
+        _displayedScore = GetCalculationScore();
         UpdateText();
     }
 
     private void Update()
     {
-        if (_displayedScore != _gates.Score)
+        if (_displayedScore != GetCalculationScore())
         {
             _animationProgress += Time.deltaTime / _updateSpeed;
-            _displayedScore = (int)Mathf.Lerp(_displayedScore, _gates.Score, _animationProgress);
+            _displayedScore = (int)Mathf.Lerp(_displayedScore, GetCalculationScore(), _animationProgress);
             UpdateText();
 
-            if (Mathf.Approximately(_displayedScore, _gates.Score))
+            if (Mathf.Approximately(_displayedScore, GetCalculationScore()))
             {
                 _animationProgress = 0f;
+                Debug.Log($"Счет: {_displayedScore}");
             }
         }
+        
     }
 
     private void UpdateText()
@@ -48,5 +51,11 @@ public class ScoreUI : MonoBehaviour
         {
             _scoreText.text = $"Счет: {_displayedScore}";
         }
+    }
+
+    private int GetCalculationScore()
+    {
+        
+        return 10 * _hitTrigger.NumberOfHits;
     }
 }

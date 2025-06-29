@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class MoverCustom : MonoBehaviour
 {
     [Header("Настройки движения")]
@@ -12,12 +13,6 @@ public class MoverCustom : MonoBehaviour
     private float _speed = 1f;
     [SerializeField, Tooltip("Задержка перед изменением направления движения")]
     private float _delay = 2f;
-
-    [Header("Настройки Gizmos")]
-    [SerializeField, Tooltip("Цвет линии движения")]
-    private Color _gizmoColor = Color.yellow;
-    [SerializeField, Tooltip("Радиус точек по бокам")]
-    private float _sphereRadius = 0.4f;
 
     private Rigidbody _rb;
     private bool _movingToEnd = true;
@@ -53,12 +48,20 @@ public class MoverCustom : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
+
+    [Header("Настройки Gizmos")]
+    [SerializeField, Tooltip("Цвет линии движения")]
+    private Color _gizmoColor = Color.yellow;
+    [SerializeField, Tooltip("Радиус точек по бокам")]
+    private float _sphereRadius = 0.4f;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = _gizmoColor;
 
         // В редакторе показывает текущие точки
-#if UNITY_EDITOR
+
         if (!Application.isPlaying)
         {
             Gizmos.DrawSphere(transform.TransformPoint(_startLocal), _sphereRadius);
@@ -66,11 +69,12 @@ public class MoverCustom : MonoBehaviour
             Gizmos.DrawLine(transform.TransformPoint(_startLocal), transform.TransformPoint(_endLocal));
             return;
         }
-#endif
+
 
         // Во время игрового режима показывает зафиксированные точки
         Gizmos.DrawSphere(_worldStart, _sphereRadius);
         Gizmos.DrawSphere(_worldEnd, _sphereRadius);
         Gizmos.DrawLine(_worldStart, _worldEnd);
     }
+#endif
 }

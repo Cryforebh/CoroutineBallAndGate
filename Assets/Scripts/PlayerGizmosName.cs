@@ -1,6 +1,8 @@
 using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
+
 public class PlayerGizmosName : MonoBehaviour
 {
     [SerializeField, Tooltip("Расположение тега по отношению к Игроку")]
@@ -22,3 +24,4 @@ public class PlayerGizmosName : MonoBehaviour
         Handles.Label(transform.TransformPoint(_tagOffset), "Player", style);
     }
 }
+#endif

@@ -2,37 +2,36 @@
 
 namespace Assets.Scripts
 {
+    [RequireComponent(typeof(Collider))]
     public class Gates : MonoBehaviour
     {
         [SerializeField, ReadOnly]
-        private int _score; // Текущий счет игрока
+        private int _numberOfHits = 0;
 
-        public int Score => _score;
+        private Collider _gatesCollider;
 
-        private void Start()
+        public int NumberOfHits => _numberOfHits;
+
+        private void Awake()
         {
+            _gatesCollider = GetComponent<Collider>();
             // Автоматически делаем коллайдер триггером
-            Collider collider = GetComponent<Collider>();
-            if (collider != null)
+            if (_gatesCollider != null)
             {
-                collider.isTrigger = true;
+                _gatesCollider.isTrigger = true;
             }
             else
             {
-                Debug.LogError("Добавьте коллайдер к воротам!");
+                Debug.LogError("Коллайдер не установлен!");
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            // Проверяем, является ли объект мячом
-            Ball ball = other.GetComponent<Ball>();
-
-            if (ball != null)
+            if (other.TryGetComponent<Ball>(out var ball))
             {
-                Destroy(ball.gameObject); // Уничтожаем мяч
-                _score = _score + 10; // Увеличиваем счет | Если правильно понял "_score++" дороже чем "_score = _score + 10", поэтому написал так
-                Debug.Log($"Счет: {_score}"); // Выводим в консоль
+                ball.Realese();
+                _numberOfHits += 1;
             }
         }
     }

@@ -92,6 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4587973609386491994}
+  - component: {fileID: 2230815243943596087}
+  - component: {fileID: 6592662945121796835}
   m_Layer: 0
   m_Name: Butterfly
   m_TagString: Untagged
@@ -115,6 +117,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &2230815243943596087
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995242396581407090}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6592662945121796835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 995242396581407090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bed3bc33d58fbe40a50d5e8295d56eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _localStart: {x: -16, y: 0, z: -6}
+  _localNetural: {x: 0, y: 0, z: 0}
+  _localEnd: {x: 16, y: 0, z: -6}
+  _speedMove: 2
+  _delayStop: 1
+  _gizmosColor: {r: 0, g: 0.6566129, b: 1, a: 1}
+  _sphereRadius: 0.4
 --- !u!1 &5601277932599934696
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,8 +174,6 @@ GameObject:
   - component: {fileID: 2464259920227365725}
   - component: {fileID: 7331134790444626177}
   - component: {fileID: 3908453364458139693}
-  - component: {fileID: 3355306521290574186}
-  - component: {fileID: 2340808212981414137}
   m_Layer: 0
   m_Name: Main
   m_TagString: Untagged
@@ -202,52 +248,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &3355306521290574186
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5601277932599934696}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &2340808212981414137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5601277932599934696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bed3bc33d58fbe40a50d5e8295d56eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _localStart: {x: -16, y: 0, z: -6}
-  _localNetural: {x: 0, y: 0, z: 0}
-  _localEnd: {x: 16, y: 0, z: -6}
-  _speedMove: 2
-  _delayStop: 1
-  _gizmosColor: {r: 0, g: 0.6566129, b: 1, a: 1}
-  _sphereRadius: 0.4
 --- !u!1 &7553077912661664242
 GameObject:
   m_ObjectHideFlags: 0
